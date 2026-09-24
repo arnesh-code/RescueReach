@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,125 +15,283 @@
     >
 
     <style>
+
         body {
             background-color: #f8f9fa;
         }
 
+        .page-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 45px 20px;
+            border-radius: 0 0 30px 30px;
+        }
+
         .hospital-card {
             border: none;
-            border-radius: 15px;
-            transition: transform 0.2s;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .hospital-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
         }
 
         .nearest-card {
             border: 3px solid #dc3545;
         }
 
+        .hospital-icon {
+            font-size: 3rem;
+        }
+
         .nearest-badge {
             background-color: #dc3545;
             color: white;
-            padding: 6px 12px;
+            padding: 7px 14px;
             border-radius: 20px;
             display: inline-block;
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 600;
+        }
+
+        .distance-box {
+            background-color: #fff1f2;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 15px 0;
         }
 
         .distance {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: #dc3545;
+            margin: 0;
         }
 
-        .map-btn {
-            margin-top: 8px;
+        .info-label {
+            font-weight: 600;
         }
+
+        .action-btn {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .empty-state {
+            border-radius: 18px;
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-danger">
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-dark bg-danger shadow-sm">
+
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">
+
+        <a
+            class="navbar-brand fw-bold fs-4"
+            href="/"
+        >
             🚑 RescueReach
         </a>
+
+        <span class="text-white d-none d-sm-block">
+            Nearby Hospitals
+        </span>
+
     </div>
+
 </nav>
 
 
+
+<!-- Page Header -->
+
+<section class="page-header text-center">
+
+    <div class="container">
+
+        <div class="hospital-icon mb-2">
+            🏥
+        </div>
+
+        <h1 class="fw-bold">
+            Nearby Hospitals
+        </h1>
+
+        <p class="lead mb-0">
+            Hospitals are sorted from nearest to farthest.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- Main Content -->
+
 <main class="container py-5">
-
-    <h1 class="text-center mb-2">
-        📍 Nearby Hospitals
-    </h1>
-
-    <p class="text-center text-muted mb-5">
-        Hospitals are sorted from nearest to farthest.
-    </p>
 
 
     {% if hospitals %}
 
-        <div class="row">
+
+        <!-- Results Summary -->
+
+        <div class="text-center mb-4">
+
+            <h2 class="h4 fw-bold">
+                📍 Hospitals Near You
+            </h2>
+
+            <p class="text-muted mb-0">
+                Select a hospital to call or view its location.
+            </p>
+
+        </div>
+
+
+
+        <!-- Hospital Cards -->
+
+        <div class="row g-4">
 
             {% for hospital in hospitals %}
 
-            <div class="col-md-6 col-lg-4 mb-4">
+            <div class="col-md-6 col-lg-4">
 
-                <div class="card hospital-card shadow-sm h-100
-                    {% if loop.first %}nearest-card{% endif %}">
+                <div
+                    class="card hospital-card shadow-sm h-100
+                    {% if loop.first %}nearest-card{% endif %}"
+                >
 
-                    <div class="card-body">
+                    <div class="card-body p-4 d-flex flex-column">
+
+
+                        <!-- Nearest Badge -->
 
                         {% if loop.first %}
-                            <span class="nearest-badge mb-3">
-                                ⭐ Nearest Hospital
+
+                            <div class="mb-2">
+
+                                <span class="nearest-badge">
+                                    ⭐ Nearest Hospital
+                                </span>
+
+                            </div>
+
+                        {% endif %}
+
+
+
+                        <!-- Hospital Name -->
+
+                        <div class="text-center mb-2">
+
+                            <div class="fs-1">
+                                🏥
+                            </div>
+
+                            <h2 class="h5 fw-bold mt-2 mb-0">
+                                {{ hospital.name }}
+                            </h2>
+
+                        </div>
+
+
+
+                        <!-- Distance -->
+
+                        <div class="distance-box text-center">
+
+                            <p class="distance">
+                                📍 {{ hospital.distance }} km
+                            </p>
+
+                            <small class="text-muted">
+                                Distance from your location
+                            </small>
+
+                        </div>
+
+
+
+                        <!-- Address -->
+
+                        <div class="mb-3">
+
+                            <span class="info-label">
+                                📍 Address
                             </span>
-                        {% endif %}
 
-                        <h2 class="h4 mt-3">
-                            🏥 {{ hospital.name }}
-                        </h2>
+                            <p class="text-muted mb-0 mt-1">
+                                {{ hospital.address }}
+                            </p>
 
-                        <p class="distance">
-                            📍 {{ hospital.distance }} km
-                        </p>
+                        </div>
 
-                        <p class="mb-2">
-                            <strong>Address</strong><br>
-                            {{ hospital.address }}
-                        </p>
+
+
+                        <!-- Phone -->
 
                         {% if hospital.phone %}
-                        <p>
-                            <strong>Phone:</strong><br>
-                            {{ hospital.phone }}
-                        </p>
+
+                        <div class="mb-3">
+
+                            <span class="info-label">
+                                📞 Phone
+                            </span>
+
+                            <p class="mb-0 mt-1">
+                                {{ hospital.phone }}
+                            </p>
+
+                        </div>
+
                         {% endif %}
 
 
-                        {% if hospital.phone %}
-                        <a
-                            href="tel:{{ hospital.phone }}"
-                            class="btn btn-danger w-100"
-                        >
-                            📞 Call Hospital
-                        </a>
-                        {% endif %}
+
+                        <!-- Action Buttons -->
+
+                        <div class="mt-auto">
 
 
-                        <a
-                            href="https://www.google.com/maps/search/?api=1&query={{ hospital.latitude }},{{ hospital.longitude }}"
-                            target="_blank"
-                            class="btn btn-outline-danger w-100 map-btn"
-                        >
-                            🗺️ Open in Google Maps
-                        </a>
+                            {% if hospital.phone %}
+
+                            <a
+                                href="tel:{{ hospital.phone }}"
+                                class="btn btn-danger w-100 action-btn mb-2"
+                            >
+                                📞 Call Hospital
+                            </a>
+
+                            {% endif %}
+
+
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query={{ hospital.latitude }},{{ hospital.longitude }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-outline-danger w-100 action-btn"
+                            >
+                                🗺️ Open in Google Maps
+                            </a>
+
+
+                        </div>
+
 
                     </div>
 
@@ -144,24 +303,81 @@
 
         </div>
 
+
     {% else %}
 
-        <div class="alert alert-warning text-center">
-            ⚠️ No hospitals were found.
+
+        <!-- No Hospitals -->
+
+        <div class="card empty-state shadow-sm border-0">
+
+            <div class="card-body text-center py-5">
+
+                <div class="display-1 mb-3">
+                    🏥
+                </div>
+
+                <h2 class="h4 fw-bold">
+                    No Hospitals Found
+                </h2>
+
+                <p class="text-muted mb-4">
+                    We couldn't find any hospitals near your current location.
+                </p>
+
+                <a
+                    href="/hospitals"
+                    class="btn btn-danger"
+                >
+                    📍 Try Again
+                </a>
+
+            </div>
+
         </div>
+
 
     {% endif %}
 
 
-    <div class="text-center mt-4">
 
-        <a href="/hospitals" class="btn btn-outline-danger">
+    <!-- Back Button -->
+
+    <div class="text-center mt-5">
+
+        <a
+            href="/hospitals"
+            class="btn btn-outline-danger px-4"
+        >
             ← Back to Hospital Locator
         </a>
 
     </div>
 
+
 </main>
 
+
+
+<!-- Footer -->
+
+<footer class="text-center py-4 border-top bg-white">
+
+    <p class="fw-bold mb-1">
+        🚑 RescueReach
+    </p>
+
+    <p class="text-muted mb-1">
+        Emergency Assistance System
+    </p>
+
+    <small class="text-muted">
+        © 2026 RescueReach
+    </small>
+
+</footer>
+
+
 </body>
+
 </html>
