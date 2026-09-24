@@ -1,75 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RescueReach</title>
+    <title>RescueReach - Emergency Assistance</title>
 
-    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            padding: 60px 20px;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+        }
+
+        .emergency-note {
+            border-left: 5px solid #dc3545;
+        }
+
+        footer {
+            background-color: white;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-dark bg-danger">
+    <nav class="navbar navbar-dark bg-danger shadow-sm">
+
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/">
+
+            <a class="navbar-brand fw-bold fs-4" href="/">
                 🚑 RescueReach
             </a>
 
-            <span class="text-white">
+            <span class="text-white d-none d-sm-block">
                 Emergency Assistance
             </span>
+
         </div>
+
     </nav>
 
 
-    <!-- Main Section -->
-    <main class="container py-5">
+    <!-- Hero Section -->
+    <section class="hero text-center">
 
-        <div class="text-center">
+        <div class="container">
 
-            <h1 class="display-4 fw-bold">
+            <div class="display-1 mb-3">
+                🚑
+            </div>
+
+            <h1 class="display-5 fw-bold">
                 Emergency Help, One Click Away
             </h1>
 
-            <p class="lead mt-3">
-                Get basic first-aid guidance and find nearby hospitals.
+            <p class="lead mt-3 mb-0">
+                Get basic first-aid guidance and find hospitals near you.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="container py-5">
+
+        <!-- Emergency Notice -->
+        <div class="alert alert-danger emergency-note shadow-sm mb-5">
+
+            <h5 class="fw-bold">
+                ⚠️ Emergency Notice
+            </h5>
+
+            <p class="mb-0">
+                RescueReach provides basic first-aid information and hospital
+                location assistance. In a serious emergency, contact your
+                local emergency medical service immediately.
             </p>
 
         </div>
 
 
         <!-- Main Options -->
-        <div class="row justify-content-center mt-5 g-4">
+        <div class="row justify-content-center g-4">
 
             <!-- First Aid -->
-            <div class="col-md-5">
+            <div class="col-md-6 col-lg-5">
 
-                <div class="card shadow-sm h-100">
+                <div class="card feature-card shadow-sm h-100">
 
-                    <div class="card-body text-center p-4">
+                    <div class="card-body text-center p-5">
 
-                        <div class="display-3">
+                        <div class="feature-icon">
                             🩹
                         </div>
 
-                        <h2 class="h4 mt-3">
+                        <h2 class="h3 fw-bold mt-3">
                             First Aid
                         </h2>
 
-                        <p>
-                            Learn basic first-aid steps for common emergencies.
+                        <p class="text-muted mt-3">
+                            Learn basic first-aid steps for common emergency
+                            situations.
                         </p>
 
-                        <a href="/first-aid" class="btn btn-danger">
-                             View First Aid
+                        <a
+                            href="/first-aid"
+                            class="btn btn-danger btn-lg px-4 mt-2"
+                        >
+                            View First Aid
                         </a>
+
                     </div>
 
                 </div>
@@ -77,27 +148,31 @@
             </div>
 
 
-            <!-- Hospital -->
-            <div class="col-md-5">
+            <!-- Hospitals -->
+            <div class="col-md-6 col-lg-5">
 
-                <div class="card shadow-sm h-100">
+                <div class="card feature-card shadow-sm h-100">
 
-                    <div class="card-body text-center p-4">
+                    <div class="card-body text-center p-5">
 
-                        <div class="display-3">
+                        <div class="feature-icon">
                             🏥
                         </div>
 
-                        <h2 class="h4 mt-3">
+                        <h2 class="h3 fw-bold mt-3">
                             Find Hospital
                         </h2>
 
-                        <p>
-                            Find hospitals based on your current location.
+                        <p class="text-muted mt-3">
+                            View hospitals and find nearby medical facilities
+                            using your current location.
                         </p>
 
-                        <a href="/hospitals" class="btn btn-danger">
-                            Find My Nearby Hospital
+                        <a
+                            href="/hospitals"
+                            class="btn btn-danger btn-lg px-4 mt-2"
+                        >
+                            Find Hospitals
                         </a>
 
                     </div>
@@ -107,6 +182,84 @@
             </div>
 
         </div>
+
+
+        <!-- How RescueReach Helps -->
+        <section class="text-center mt-5 pt-4">
+
+            <h2 class="fw-bold">
+                How RescueReach Helps
+            </h2>
+
+            <div class="row mt-4 g-4">
+
+                <div class="col-md-4">
+
+                    <div class="p-3">
+
+                        <div class="fs-1">
+                            🩹
+                        </div>
+
+                        <h5 class="fw-bold mt-2">
+                            First-Aid Guidance
+                        </h5>
+
+                        <p class="text-muted">
+                            Access simple guidance for common emergency
+                            situations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="p-3">
+
+                        <div class="fs-1">
+                            📍
+                        </div>
+
+                        <h5 class="fw-bold mt-2">
+                            Hospital Location
+                        </h5>
+
+                        <p class="text-muted">
+                            Find hospitals based on your current location.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="p-3">
+
+                        <div class="fs-1">
+                            🌐
+                        </div>
+
+                        <h5 class="fw-bold mt-2">
+                            Easy Access
+                        </h5>
+
+                        <p class="text-muted">
+                            Use RescueReach easily from a phone, tablet or
+                            computer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
 
@@ -114,11 +267,24 @@
     <!-- Footer -->
     <footer class="text-center py-4 border-top">
 
-        <p class="mb-0">
-            © 2026 RescueReach
-        </p>
+        <div class="container">
+
+            <p class="mb-1 fw-bold">
+                🚑 RescueReach
+            </p>
+
+            <p class="mb-0 text-muted">
+                Emergency Assistance System
+            </p>
+
+            <small class="text-muted">
+                © 2026 RescueReach
+            </small>
+
+        </div>
 
     </footer>
+
 
 </body>
 </html>
