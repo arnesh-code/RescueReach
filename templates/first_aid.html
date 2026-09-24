@@ -14,62 +14,166 @@
         rel="stylesheet"
     >
 
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 45px 20px;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .aid-card {
+            border: none;
+            border-radius: 18px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .aid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .aid-icon {
+            font-size: 3rem;
+        }
+
+        .tamil-title {
+            font-size: 0.95rem;
+        }
+
+        .guidance-btn {
+            border-radius: 10px;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-danger">
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-dark bg-danger shadow-sm">
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="/">
+        <a
+            class="navbar-brand fw-bold fs-4"
+            href="/"
+        >
             🚑 RescueReach
         </a>
+
+        <span class="text-white d-none d-sm-block">
+            First-Aid Guidance
+        </span>
 
     </div>
 
 </nav>
 
 
+
+<!-- Page Header -->
+
+<section class="page-header text-center">
+
+    <div class="container">
+
+        <div class="aid-icon mb-2">
+            🩹
+        </div>
+
+        <h1 class="fw-bold">
+            First-Aid Guidance
+        </h1>
+
+        <p class="lead mb-0">
+            Select an emergency topic to view basic first-aid guidance.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- Main Content -->
+
 <main class="container py-5">
 
-    <h1 class="text-center mb-2">
-        🩹 First-Aid Guidance
-    </h1>
 
-    <p class="text-center text-muted mb-5">
-        Select a topic to view first-aid guidance.
-    </p>
+    {% if topics %}
 
-
-    <div class="row">
+    <div class="row g-4">
 
         {% for topic in topics %}
 
-        <div class="col-md-6 col-lg-4 mb-4">
+        <div class="col-md-6 col-lg-4">
 
-            <div class="card shadow-sm h-100">
+            <div class="card aid-card shadow-sm h-100">
 
-                <div class="card-body">
+                <div class="card-body d-flex flex-column p-4">
 
-                    <h2 class="h4">
+
+                    <!-- Icon -->
+
+                    <div class="text-center mb-3">
+
+                        <span class="display-5">
+                            🩹
+                        </span>
+
+                    </div>
+
+
+                    <!-- English Title -->
+
+                    <h2 class="h4 fw-bold text-center">
+
                         {{ topic.title_en }}
+
                     </h2>
 
-                    <p class="text-muted">
+
+                    <!-- Tamil Title -->
+
+                    <p class="text-danger text-center tamil-title mb-3">
+
                         {{ topic.title_ta }}
+
                     </p>
 
-                    <p>
+
+                    <!-- Description -->
+
+                    <p class="text-muted flex-grow-1">
+
                         {{ topic.description_en }}
+
                     </p>
 
-                    <a
-                        href="/first-aid/{{ topic.id }}"
-                        class="btn btn-danger"
-                    >
-                        View Guidance
-                    </a>
+
+                    <!-- View Button -->
+
+                    <div class="text-center mt-3">
+
+                        <a
+                            href="/first-aid/{{ topic.id }}"
+                            class="btn btn-danger guidance-btn px-4"
+                        >
+                            View Guidance →
+                        </a>
+
+                    </div>
+
 
                 </div>
 
@@ -82,13 +186,37 @@
     </div>
 
 
-    <!-- BACK TO HOME BUTTON -->
+    {% else %}
 
-    <div class="text-center mt-4 mb-4">
+    <!-- No Topics -->
+
+    <div class="text-center py-5">
+
+        <div class="display-1 mb-3">
+            🩹
+        </div>
+
+        <h3>
+            No First-Aid Topics Available
+        </h3>
+
+        <p class="text-muted">
+            First-aid guidance has not been added yet.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- Back Button -->
+
+    <div class="text-center mt-5">
 
         <a
             href="/"
-            class="btn btn-outline-danger"
+            class="btn btn-outline-danger px-4"
         >
             ← Back to Home
         </a>
@@ -97,6 +225,27 @@
 
 
 </main>
+
+
+
+<!-- Footer -->
+
+<footer class="text-center py-4 border-top bg-white">
+
+    <p class="fw-bold mb-1">
+        🚑 RescueReach
+    </p>
+
+    <p class="text-muted mb-0">
+        Emergency Assistance System
+    </p>
+
+    <small class="text-muted">
+        © 2026 RescueReach
+    </small>
+
+</footer>
+
 
 </body>
 
