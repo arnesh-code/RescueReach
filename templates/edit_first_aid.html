@@ -14,22 +14,119 @@
         rel="stylesheet"
     >
 
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 35px 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .form-card {
+            border: none;
+            border-radius: 18px;
+        }
+
+        .language-section {
+            border: none;
+            border-radius: 14px;
+        }
+
+        .english-section {
+            border-left: 4px solid #dc3545;
+        }
+
+        .tamil-section {
+            border-left: 4px solid #dc3545;
+        }
+
+        .section-description {
+            font-size: 14px;
+        }
+
+        .topic-id {
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: white;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-danger">
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-dark bg-danger shadow-sm">
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="/admin/dashboard">
+        <a
+            class="navbar-brand fw-bold fs-4"
+            href="/admin/dashboard"
+        >
             🚑 RescueReach Admin
         </a>
+
+        <div class="d-flex gap-2">
+
+            <a
+                href="/"
+                class="btn btn-light btn-sm"
+            >
+                🏠 Website
+            </a>
+
+            <a
+                href="/admin/logout"
+                class="btn btn-outline-light btn-sm"
+            >
+                🚪 Logout
+            </a>
+
+        </div>
 
     </div>
 
 </nav>
 
+
+
+<!-- Page Header -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1 class="fw-bold mb-2">
+            ✏️ Edit First-Aid Topic
+        </h1>
+
+        <p class="mb-0">
+            Update English and Tamil first-aid guidance.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- Main Content -->
 
 <main class="container py-5">
 
@@ -37,172 +134,274 @@
 
         <div class="col-lg-10">
 
-            <div class="card shadow">
 
-                <div class="card-body p-4">
+            <div class="card form-card shadow-sm">
 
-                    <h1 class="h3 mb-4">
-                        ✏️ Edit First-Aid Topic
-                    </h1>
+                <div class="card-body p-4 p-md-5">
+
+
+                    <!-- Topic ID -->
+
+                    <div class="alert alert-light border mb-4">
+
+                        <strong>
+                            Topic ID:
+                        </strong>
+
+                        <span class="topic-id">
+                            {{ topic.id }}
+                        </span>
+
+                    </div>
+
+
 
                     <form method="POST">
 
-                        <!-- ENGLISH -->
 
-                        <h5 class="text-danger mb-3">
-                            English Content
-                        </h5>
+                        <!-- English Section -->
 
-                        <div class="mb-3">
+                        <div class="card language-section english-section bg-light mb-4">
 
-                            <label class="form-label">
-                                Title
-                            </label>
+                            <div class="card-body p-4">
 
-                            <input
-                                type="text"
-                                name="title_en"
-                                class="form-control"
-                                value="{{ topic.title_en }}"
-                                required
-                            >
+                                <h2 class="h4 fw-bold text-danger mb-2">
+                                    🇬🇧 English Content
+                                </h2>
 
-                        </div>
+                                <p class="text-muted section-description mb-4">
+                                    Update the English first-aid guidance
+                                    displayed to users.
+                                </p>
 
 
-                        <div class="mb-3">
+                                <!-- English Title -->
 
-                            <label class="form-label">
-                                Description
-                            </label>
+                                <div class="mb-3">
 
-                            <textarea
-                                name="description_en"
-                                class="form-control"
-                                rows="3"
-                            >{{ topic.description_en or '' }}</textarea>
+                                    <label
+                                        for="title_en"
+                                        class="form-label fw-semibold"
+                                    >
+                                        Title
+                                    </label>
 
-                        </div>
+                                    <input
+                                        type="text"
+                                        id="title_en"
+                                        name="title_en"
+                                        class="form-control"
+                                        value="{{ topic.title_en }}"
+                                        required
+                                    >
 
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                First-Aid Steps
-                            </label>
-
-                            <textarea
-                                name="steps_en"
-                                class="form-control"
-                                rows="5"
-                            >{{ topic.steps_en or '' }}</textarea>
-
-                        </div>
+                                </div>
 
 
-                        <div class="mb-4">
+                                <!-- English Description -->
 
-                            <label class="form-label">
-                                Warning
-                            </label>
+                                <div class="mb-3">
 
-                            <textarea
-                                name="warning_en"
-                                class="form-control"
-                                rows="3"
-                            >{{ topic.warning_en or '' }}</textarea>
+                                    <label
+                                        for="description_en"
+                                        class="form-label fw-semibold"
+                                    >
+                                        Description
+                                    </label>
 
-                        </div>
+                                    <textarea
+                                        id="description_en"
+                                        name="description_en"
+                                        class="form-control"
+                                        rows="4"
+                                    >{{ topic.description_en or '' }}</textarea>
 
-
-                        <hr class="my-4">
-
-
-                        <!-- TAMIL -->
-
-                        <h5 class="text-danger mb-3">
-                            தமிழ் உள்ளடக்கம்
-                        </h5>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                தலைப்பு
-                            </label>
-
-                            <input
-                                type="text"
-                                name="title_ta"
-                                class="form-control"
-                                value="{{ topic.title_ta }}"
-                                required
-                            >
-
-                        </div>
+                                </div>
 
 
-                        <div class="mb-3">
+                                <!-- English Steps -->
 
-                            <label class="form-label">
-                                விளக்கம்
-                            </label>
+                                <div class="mb-3">
 
-                            <textarea
-                                name="description_ta"
-                                class="form-control"
-                                rows="3"
-                            >{{ topic.description_ta or '' }}</textarea>
+                                    <label
+                                        for="steps_en"
+                                        class="form-label fw-semibold"
+                                    >
+                                        First-Aid Steps
+                                    </label>
 
-                        </div>
+                                    <textarea
+                                        id="steps_en"
+                                        name="steps_en"
+                                        class="form-control"
+                                        rows="7"
+                                    >{{ topic.steps_en or '' }}</textarea>
+
+                                    <div class="form-text">
+                                        You can use separate lines for each step.
+                                    </div>
+
+                                </div>
 
 
-                        <div class="mb-3">
+                                <!-- English Warning -->
 
-                            <label class="form-label">
-                                முதலுதவி படிகள்
-                            </label>
+                                <div>
 
-                            <textarea
-                                name="steps_ta"
-                                class="form-control"
-                                rows="5"
-                            >{{ topic.steps_ta or '' }}</textarea>
+                                    <label
+                                        for="warning_en"
+                                        class="form-label fw-semibold"
+                                    >
+                                        Warning
+                                    </label>
+
+                                    <textarea
+                                        id="warning_en"
+                                        name="warning_en"
+                                        class="form-control"
+                                        rows="4"
+                                    >{{ topic.warning_en or '' }}</textarea>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
 
-                        <div class="mb-4">
 
-                            <label class="form-label">
-                                எச்சரிக்கை
-                            </label>
+                        <!-- Tamil Section -->
 
-                            <textarea
-                                name="warning_ta"
-                                class="form-control"
-                                rows="3"
-                            >{{ topic.warning_ta or '' }}</textarea>
+                        <div class="card language-section tamil-section bg-light mb-4">
+
+                            <div class="card-body p-4">
+
+                                <h2 class="h4 fw-bold text-danger mb-2">
+                                    🇮🇳 தமிழ் உள்ளடக்கம்
+                                </h2>
+
+                                <p class="text-muted section-description mb-4">
+                                    பயனர்களுக்குக் காட்டப்படும் தமிழ்
+                                    முதலுதவி வழிகாட்டியைப் புதுப்பிக்கவும்.
+                                </p>
+
+
+                                <!-- Tamil Title -->
+
+                                <div class="mb-3">
+
+                                    <label
+                                        for="title_ta"
+                                        class="form-label fw-semibold"
+                                    >
+                                        தலைப்பு
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="title_ta"
+                                        name="title_ta"
+                                        class="form-control"
+                                        value="{{ topic.title_ta }}"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <!-- Tamil Description -->
+
+                                <div class="mb-3">
+
+                                    <label
+                                        for="description_ta"
+                                        class="form-label fw-semibold"
+                                    >
+                                        விளக்கம்
+                                    </label>
+
+                                    <textarea
+                                        id="description_ta"
+                                        name="description_ta"
+                                        class="form-control"
+                                        rows="4"
+                                    >{{ topic.description_ta or '' }}</textarea>
+
+                                </div>
+
+
+                                <!-- Tamil Steps -->
+
+                                <div class="mb-3">
+
+                                    <label
+                                        for="steps_ta"
+                                        class="form-label fw-semibold"
+                                    >
+                                        முதலுதவி படிகள்
+                                    </label>
+
+                                    <textarea
+                                        id="steps_ta"
+                                        name="steps_ta"
+                                        class="form-control"
+                                        rows="7"
+                                    >{{ topic.steps_ta or '' }}</textarea>
+
+                                    <div class="form-text">
+                                        ஒவ்வொரு படியையும் தனித்தனி வரியில் எழுதலாம்.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Tamil Warning -->
+
+                                <div>
+
+                                    <label
+                                        for="warning_ta"
+                                        class="form-label fw-semibold"
+                                    >
+                                        எச்சரிக்கை
+                                    </label>
+
+                                    <textarea
+                                        id="warning_ta"
+                                        name="warning_ta"
+                                        class="form-control"
+                                        rows="4"
+                                    >{{ topic.warning_ta or '' }}</textarea>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
 
-                        <div class="d-flex gap-2">
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex flex-column flex-sm-row
+                                    justify-content-between gap-2">
 
                             <a
                                 href="/admin/first-aid"
                                 class="btn btn-outline-secondary"
                             >
-                                Cancel
+                                ← Cancel
                             </a>
 
                             <button
                                 type="submit"
-                                class="btn btn-danger"
+                                class="btn btn-danger px-4"
                             >
                                 💾 Save Changes
                             </button>
 
                         </div>
+
 
                     </form>
 
@@ -210,11 +409,33 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 </main>
+
+
+
+<!-- Footer -->
+
+<footer class="border-top text-center py-4">
+
+    <p class="fw-bold mb-1">
+        🚑 RescueReach
+    </p>
+
+    <p class="text-muted mb-1">
+        Emergency Assistance System
+    </p>
+
+    <small class="text-muted">
+        © 2026 RescueReach Admin Panel
+    </small>
+
+</footer>
+
 
 </body>
 

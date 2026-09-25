@@ -14,82 +14,220 @@
         rel="stylesheet"
     >
 
+    <style>
+
+        body {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .login-wrapper {
+            min-height: 100vh;
+        }
+
+        .login-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 35px 20px;
+        }
+
+        .login-icon {
+            font-size: 4rem;
+        }
+
+        .form-control {
+            padding: 12px;
+        }
+
+        .login-btn {
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        footer {
+            font-size: 13px;
+        }
+
+    </style>
+
 </head>
 
-<body class="bg-light">
+
+<body>
+
 
 <div class="container">
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center align-items-center login-wrapper">
 
-        <div class="col-md-5">
+        <div class="col-sm-10 col-md-7 col-lg-5">
 
-            <div class="card shadow">
+            <div class="card login-card shadow">
 
-                <div class="card-body p-4">
 
-                    <h2 class="text-center mb-4">
-                        🔐 RescueReach Admin
-                    </h2>
+                <!-- Header -->
+
+                <div class="login-header text-center">
+
+                    <div class="login-icon">
+                        🚑
+                    </div>
+
+                    <h1 class="h3 fw-bold mb-2">
+                        RescueReach Admin
+                    </h1>
+
+                    <p class="mb-0">
+                        Administrator Login
+                    </p>
+
+                </div>
+
+
+                <!-- Login Form -->
+
+                <div class="card-body p-4 p-md-5">
+
 
                     {% if error %}
 
-                    <div class="alert alert-danger">
-                        {{ error }}
+                    <div
+                        class="alert alert-danger"
+                        role="alert"
+                    >
+                        ⚠️ {{ error }}
                     </div>
 
                     {% endif %}
 
+
+                    <div class="text-center mb-4">
+
+                        <h2 class="h5 fw-bold">
+                            🔐 Sign in to continue
+                        </h2>
+
+                        <p class="text-muted small mb-0">
+                            Access the RescueReach management panel.
+                        </p>
+
+                    </div>
+
+
                     <form method="POST">
+
+
+                        <!-- Username -->
 
                         <div class="mb-3">
 
-                            <label class="form-label">
+                            <label
+                                for="username"
+                                class="form-label fw-semibold"
+                            >
                                 Username
                             </label>
 
                             <input
                                 type="text"
+                                id="username"
                                 name="username"
                                 class="form-control"
+                                placeholder="Enter your username"
+                                autocomplete="username"
                                 required
                             >
 
                         </div>
 
-                        <div class="mb-3">
 
-                            <label class="form-label">
+                        <!-- Password -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="password"
+                                class="form-label fw-semibold"
+                            >
                                 Password
                             </label>
 
                             <input
                                 type="password"
+                                id="password"
                                 name="password"
                                 class="form-control"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
                                 required
                             >
 
                         </div>
 
+
+                        <!-- Login Button -->
+
                         <button
                             type="submit"
-                            class="btn btn-danger w-100"
+                            class="btn btn-danger w-100 login-btn"
                         >
-                            Login
+                            🔐 Login to Admin Panel
                         </button>
+
 
                     </form>
 
+
+                    <!-- Back to Website -->
+
+                    <div class="text-center mt-4">
+
+                        <a
+                            href="/"
+                            class="text-danger text-decoration-none"
+                        >
+                            ← Back to RescueReach
+                        </a>
+
+                    </div>
+
                 </div>
 
+
             </div>
+
+
+            <!-- Footer -->
+
+            <footer class="text-center text-muted mt-4">
+
+                <p class="mb-1 fw-bold">
+                    🚑 RescueReach
+                </p>
+
+                <p class="mb-0">
+                    Emergency Assistance System
+                </p>
+
+                <small>
+                    © 2026 RescueReach
+                </small>
+
+            </footer>
+
 
         </div>
 
     </div>
 
 </div>
+
 
 </body>
 
