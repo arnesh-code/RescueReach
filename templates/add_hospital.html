@@ -14,146 +14,315 @@
         rel="stylesheet"
     >
 
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 35px 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .form-card {
+            border: none;
+            border-radius: 18px;
+        }
+
+        .form-section {
+            background-color: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            border-radius: 10px;
+        }
+
+        .location-note {
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: white;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-danger">
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-dark bg-danger shadow-sm">
 
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="/admin/dashboard">
+        <a
+            class="navbar-brand fw-bold fs-4"
+            href="/admin/dashboard"
+        >
             🚑 RescueReach Admin
         </a>
+
+        <div class="d-flex gap-2">
+
+            <a
+                href="/"
+                class="btn btn-light btn-sm"
+            >
+                🏠 Website
+            </a>
+
+            <a
+                href="/admin/logout"
+                class="btn btn-outline-light btn-sm"
+            >
+                🚪 Logout
+            </a>
+
+        </div>
 
     </div>
 
 </nav>
 
 
+
+<!-- Page Header -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1 class="fw-bold mb-2">
+            ➕ Add Hospital
+        </h1>
+
+        <p class="mb-0">
+            Add hospital information to the RescueReach database.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- Main Content -->
+
 <main class="container py-5">
 
     <div class="row justify-content-center">
 
-        <div class="col-md-7">
+        <div class="col-lg-8">
 
-            <div class="card shadow">
 
-                <div class="card-body p-4">
+            <div class="card form-card shadow-sm">
 
-                    <h1 class="h3 mb-4">
-                        ➕ Add Hospital
-                    </h1>
+                <div class="card-body p-4 p-md-5">
+
 
                     <form method="POST">
 
-                        <div class="mb-3">
 
-                            <label class="form-label">
-                                Hospital Name
-                            </label>
+                        <!-- Basic Information -->
 
-                            <input
-                                type="text"
-                                name="name"
-                                class="form-control"
-                                placeholder="Enter hospital name"
-                                required
-                            >
+                        <div class="card form-section border-0 mb-4">
 
-                        </div>
+                            <div class="card-body">
+
+                                <h2 class="h5 fw-bold mb-3">
+                                    🏥 Hospital Information
+                                </h2>
 
 
-                        <div class="mb-3">
+                                <!-- Hospital Name -->
 
-                            <label class="form-label">
-                                Address
-                            </label>
+                                <div class="mb-3">
 
-                            <textarea
-                                name="address"
-                                class="form-control"
-                                rows="3"
-                                placeholder="Enter hospital address"
-                                required
-                            ></textarea>
+                                    <label
+                                        for="hospitalName"
+                                        class="form-label fw-semibold"
+                                    >
+                                        Hospital Name
+                                    </label>
 
-                        </div>
+                                    <input
+                                        type="text"
+                                        id="hospitalName"
+                                        name="name"
+                                        class="form-control"
+                                        placeholder="Enter hospital name"
+                                        required
+                                    >
 
-
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-
-                                <label class="form-label">
-                                    Latitude
-                                </label>
-
-                                <input
-                                    type="number"
-                                    name="latitude"
-                                    class="form-control"
-                                    step="any"
-                                    placeholder="Example: 13.0827000"
-                                    required
-                                >
-
-                            </div>
+                                </div>
 
 
-                            <div class="col-md-6 mb-3">
+                                <!-- Address -->
 
-                                <label class="form-label">
-                                    Longitude
-                                </label>
+                                <div class="mb-2">
 
-                                <input
-                                    type="number"
-                                    name="longitude"
-                                    class="form-control"
-                                    step="any"
-                                    placeholder="Example: 80.2707000"
-                                    required
-                                >
+                                    <label
+                                        for="hospitalAddress"
+                                        class="form-label fw-semibold"
+                                    >
+                                        Address
+                                    </label>
+
+                                    <textarea
+                                        id="hospitalAddress"
+                                        name="address"
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Enter complete hospital address"
+                                        required
+                                    ></textarea>
+
+                                </div>
 
                             </div>
 
                         </div>
 
 
-                        <div class="mb-4">
 
-                            <label class="form-label">
-                                Phone Number
-                            </label>
+                        <!-- Location Information -->
 
-                            <input
-                                type="tel"
-                                name="phone"
-                                class="form-control"
-                                placeholder="Enter phone number"
-                            >
+                        <div class="card form-section border-0 mb-4">
+
+                            <div class="card-body">
+
+                                <h2 class="h5 fw-bold mb-2">
+                                    📍 Hospital Location
+                                </h2>
+
+                                <p class="text-muted location-note mb-3">
+                                    Enter the hospital's latitude and longitude
+                                    so RescueReach can calculate nearby hospitals
+                                    and provide map directions.
+                                </p>
+
+
+                                <div class="row">
+
+
+                                    <!-- Latitude -->
+
+                                    <div class="col-md-6 mb-3 mb-md-0">
+
+                                        <label
+                                            for="latitude"
+                                            class="form-label fw-semibold"
+                                        >
+                                            Latitude
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="latitude"
+                                            name="latitude"
+                                            class="form-control"
+                                            step="any"
+                                            placeholder="Example: 13.0827000"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <!-- Longitude -->
+
+                                    <div class="col-md-6">
+
+                                        <label
+                                            for="longitude"
+                                            class="form-label fw-semibold"
+                                        >
+                                            Longitude
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="longitude"
+                                            name="longitude"
+                                            class="form-control"
+                                            step="any"
+                                            placeholder="Example: 80.2707000"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
 
-                        <div class="d-flex gap-2">
+
+                        <!-- Contact Information -->
+
+                        <div class="card form-section border-0 mb-4">
+
+                            <div class="card-body">
+
+                                <h2 class="h5 fw-bold mb-2">
+                                    📞 Contact Information
+                                </h2>
+
+                                <p class="text-muted location-note">
+                                    Phone number is optional. If provided,
+                                    users can call the hospital directly.
+                                </p>
+
+
+                                <label
+                                    for="phone"
+                                    class="form-label fw-semibold"
+                                >
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="form-control"
+                                    placeholder="Enter hospital phone number"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Buttons -->
+
+                        <div class="d-flex flex-column flex-sm-row
+                                    justify-content-between gap-2">
 
                             <a
                                 href="/admin/hospitals"
                                 class="btn btn-outline-secondary"
                             >
-                                Cancel
+                                ← Cancel
                             </a>
 
                             <button
                                 type="submit"
-                                class="btn btn-danger"
+                                class="btn btn-danger px-4"
                             >
-                                Add Hospital
+                                ➕ Add Hospital
                             </button>
 
                         </div>
+
 
                     </form>
 
@@ -161,11 +330,33 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 </main>
+
+
+
+<!-- Footer -->
+
+<footer class="border-top text-center py-4">
+
+    <p class="fw-bold mb-1">
+        🚑 RescueReach
+    </p>
+
+    <p class="text-muted mb-1">
+        Emergency Assistance System
+    </p>
+
+    <small class="text-muted">
+        © 2026 RescueReach Admin Panel
+    </small>
+
+</footer>
+
 
 </body>
 
