@@ -1,18 +1,22 @@
+import os
 import mysql.connector
+from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash
 
+load_dotenv()
+
 connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Arnesh@2003",
-    database="rescuereach",
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME"),
     charset="utf8mb4"
 )
 
 cursor = connection.cursor()
 
-username = "admin"
-password = "Admin@123"
+username = input("Enter admin username: ")
+password = input("Enter admin password: ")
 
 password_hash = generate_password_hash(password)
 
